@@ -1,0 +1,18 @@
+version: '2'
+services:
+  app:
+    image: kesshin/php70:debug
+    volumes:
+      - .:/app
+    working_dir: /app
+    tty: true
+    command: php-fpm
+  webserver:
+    image: nginx
+    links:
+      - app:app
+    volumes:
+      - ./resources/assets:/assets
+      - ./docker/nginx:/etc/nginx/conf.d
+    ports:
+      - 8090:80
