@@ -12,7 +12,9 @@ services:
     links:
       - app:app
     volumes:
-      - ./resources/assets:/assets
+      - ./public:/app/public
+      - ./resources/assets:/app/assets
+      - ./storage:/app/storage
       - ./docker/nginx:/etc/nginx/conf.d
     ports:
       - 8090:80
